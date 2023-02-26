@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Navbar from '../../components/navbar'
 import Menubar from '../../components/menubar'
-
+import Title from '../../components/title'
 
 export default function Home() {
   return (
@@ -14,6 +14,7 @@ export default function Home() {
       </Head>
       <Navbar />
       <Menubar />
+      <Title />
     </>
   )
 }
