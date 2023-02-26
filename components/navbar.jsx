@@ -7,7 +7,6 @@ function navbar() {
     <div className="flex flex-col md:flex-row md:justify-evenly">
   <div className="flex justify-center md:pb-0 md:pr-4">
     <Image
-      // class="h-10 md:h-16 w-32 md:w-48"
       width="200"
       src={Pepper}
       alt="Pepper"
@@ -18,7 +17,6 @@ function navbar() {
   </div>
   <div className="flex justify-center md:p-0 md:pl-4">
     <Image
-      // class="h-10 md:h-16 w-32 md:w-48"
       width="200"
       src={Onion}
       alt="Onion"
