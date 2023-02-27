@@ -6,7 +6,7 @@ import Results from '../../components/results'
 import requests from "../../utils/request"
 
 export default function Home({results}) {
-  console.log(results)
+  // console.log(results)
   return (
     <>
       <Head>
@@ -23,18 +23,31 @@ export default function Home({results}) {
   )
 }
 
-// export async function getServerSideProps(context) {
-//   const genre = context.query.genre;
+export async function getServerSideProps(context) {
+  const search = context.query.search;
 
-//   const request = await fetch(
-//     `https://themealdb.com/api/json/v1/1${
-//       requests[genre]?.url || requests.fetchBeef.url
-//     }`
-//   ).then((res) => res.json());
+  const results = await fetch(
+    'https://themealdb.com/api/json/v1/1/search.php?s=beef'
+  ).then((res) => res.json());
 
-//   return {
-//     props: {
-//      results: request.result
-//     },
-//   };
-// }
+  return {
+    props: {
+      results
+    },
+  };
+
+
+  // const search = context.query.search;
+
+  // const request = await fetch(
+  //   `https://themealdb.com/api${
+  //     requests[search]?.url || requests.fetchBeef.url
+  //   }`
+  // ).then((res) => res.json());
+
+  // return {
+  //   props: {
+  //    results: request.result ?? null,
+  //   },
+  // };
+}

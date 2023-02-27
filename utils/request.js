@@ -1,11 +1,11 @@
 export default {
-    fetchBeef: {
+    Beef: {
         title: 'Beef',
-        url: `/search.php?s=Beef`
+        url: `beef`
     },
     fetchChicken: {
         title: 'Chicken',
-        url: `/search.php?s=Beef`
+        url: `Beef`
     },
     fetchSteak: {
         title: 'Steak',

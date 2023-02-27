@@ -10,6 +10,7 @@ function navbar() {
       width="200"
       src={Pepper}
       alt="Pepper"
+      priority
     />
   </div>
   <div class="flex justify-center py-8  text-gray-500 md:py-0 text-4xl md:text-7xl">
