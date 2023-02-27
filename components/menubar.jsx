@@ -12,7 +12,7 @@ function Menubar() {
   };
 
   return (
-    <div className="flex justify-start text-gray-500 text-xl pt-4  relative">
+    <div className="flex justify-start text-gray-500 text-xl pt-4 pl-2 relative">
       <AiOutlineMenu
         size={25}
         className="relative cursor-pointer"
@@ -22,27 +22,35 @@ function Menubar() {
       <div
         className={`${
           isOpen ? "block" : "hidden"
-        } absolute top-0 left-0 w-1/6 h-screen z-50 bg-slate-100`}
+        } absolute top-0 left-0 w-1/2 h-screen z-50 bg-slate-100 sm:w-1/6`}
       >
-        <div className="text-2xl flex-col">
+        <div className="text-2xl pl-2">
+          <ul className="flex flex-col p-3">
           <Link
             href="/"
             className="block mt-4 sm:inline-block sm:mt-0 hover:text-blue-400 mr-4"
           >
+            <li className="p-5">
             Home
+            </li>
           </Link>
           <Link
             href="/"
             className="block mt-4 sm:inline-block sm:mt-0 hover:text-blue-400 mr-4"
           >
-            About
+            <li className="p-5">
+            Search
+            </li>
           </Link>
           <Link
             href="/"
             className="block mt-4 sm:inline-block sm:mt-0 hover:text-blue-400"
           >
-            Contact
+            <li className="p-5">
+            Favorites
+            </li>
           </Link>
+          </ul>
         </div>
       </div>
 
@@ -56,7 +64,7 @@ function Menubar() {
       {isOpen && (
         <AiOutlineClose
           size={25}
-          className="relative left-60 cursor-pointer z-50"
+          className="relative left-[120px] cursor-pointer z-50 sm:left-60"
           onClick={toggleMenu}
         />
       )}

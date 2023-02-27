@@ -1,60 +1,58 @@
-const API_KEY = process.env.API_KEY;
-
 export default {
     fetchBeef: {
         title: 'Beef',
-        url: `/trending/all/week?api_key=${API_KEY}&language=en-US`
+        url: `/search.php?s=Beef`
     },
     fetchChicken: {
         title: 'Chicken',
-        url: `/movie/top_rated?api_key=${API_KEY}&language=en-US`,
+        url: `/search.php?s=Beef`
     },
     fetchSteak: {
         title: 'Steak',
-        url: `/discover/movie?api_key=${API_KEY}&with_genres=28`,
+        url: `/search.php?s=Beef`
     },
     fetchLamb: {
         title: 'Lamb',
-        url: `/discover/movie?api_key=${API_KEY}&with_genres=35`,
+        url: `/search.php?s=Beef`
     },
     fetchPork: {
         title: 'Pork',
-        url: `/discover/movie?api_key=${API_KEY}&with_genres=27`,
+        url: `/search.php?s=Beef`
     },
     fetchSeafood: {
         title: 'Seafood',
-        url: `/discover/movie?api_key=${API_KEY}&with_genres=10749`,
+        url: `/search.php?s=Beef`
     },
     fetchSide: {
         title: 'Side',
-        url: `/discover/movie?api_key=${API_KEY}&with_genres=9648`,
+        url: `/search.php?s=Beef`
     },
     fetchStarter: {
         title: 'Starter',
-        url: `/discover/movie?api_key=${API_KEY}&with_genres=878`,
+        url: `/search.php?s=Beef`
     },
     fetchVegan: {
         title: 'Vegan',
-        url: `/discover/movie?api_key=${API_KEY}&with_genres=37`,
+        url: `/search.php?s=Beef`
     },
     fetchDesserts: {
         title: 'Desserts',
-        url: `/discover/movie?api_key=${API_KEY}&with_genres=16`,
+        url: `/search.php?s=Beef`
     },
     fetchMiscellaneous: {
         title: 'Miscellaneous',
-        url: `/discover/movie?api_key=${API_KEY}&with_genres=10770`,
+        url: `/search.php?s=Beef`
     },
     fetchVegetarian: {
         title: 'Vegetarian',
-        url: `/discover/movie?api_key=${API_KEY}&with_genres=10770`,
+        url: `/search.php?s=Beef`
     },
     fetchBreakfast: {
         title: 'Breakfast',
-        url: `/discover/movie?api_key=${API_KEY}&with_genres=10770`,
+        url: `/search.php?s=Beef`
     },
     fetchGoat: {
         title: 'Goat',
-        url: `/discover/movie?api_key=${API_KEY}&with_genres=10770`,
+        url: `/search.php?s=Beef`
     },
 }

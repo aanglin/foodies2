@@ -2,8 +2,11 @@ import Head from 'next/head'
 import Navbar from '../../components/navbar'
 import Menubar from '../../components/menubar'
 import Title from '../../components/title'
+import Results from '../../components/results'
+import requests from "../../utils/request"
 
-export default function Home() {
+export default function Home({results}) {
+  console.log(results)
   return (
     <>
       <Head>
@@ -15,6 +18,23 @@ export default function Home() {
       <Menubar />
       <Navbar />
       <Title />
+      <Results results={results}/>
     </>
   )
 }
+
+// export async function getServerSideProps(context) {
+//   const genre = context.query.genre;
+
+//   const request = await fetch(
+//     `https://themealdb.com/api/json/v1/1${
+//       requests[genre]?.url || requests.fetchBeef.url
+//     }`
+//   ).then((res) => res.json());
+
+//   return {
+//     props: {
+//      results: request.result
+//     },
+//   };
+// }
