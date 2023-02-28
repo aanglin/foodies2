@@ -3,7 +3,6 @@ import React, {useState} from 'react'
 import Modal from './modal';
 
 function thumbnail({results}) {
-  const BASE_URL = "/preview";
   console.log(results)
   
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,14 +19,14 @@ function thumbnail({results}) {
       <div>
       <Image 
       className='rounded-3xl p-4'
-      src={`${results.meals[0].strMealThumb}${BASE_URL}`}
+      src={results.hits[0].recipe.image}
      width={300}
-     height={50}
+     height={300}
      alt='/'
       />
       </div>
       <h1 className='flex justify-center'>
-        {results.meals[0].strMeal}
+        {results.hits[0].recipe.label}
       </h1>
       <div className='flex justify-center'>
       <button onClick={handleOpenModal}>Click Here for Recipe</button>

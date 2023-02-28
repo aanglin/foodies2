@@ -1,7 +1,11 @@
+const API_KEY = process.env.API_KEY;
+const API_ID = process.env.API_ID;
+
 export default {
-    Beef: {
+    fetchBeef: {
         title: 'Beef',
-        url: `beef`
+        url: `app_id=${API_ID}&app_key=${API_KEY}
+        `
     },
     fetchChicken: {
         title: 'Chicken',

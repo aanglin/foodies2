@@ -5,7 +5,7 @@ const nextConfig = {
 
 module.exports ={ 
   images: {
-  domains: ['www.themealdb.com'],
+  domains: ['www.themealdb.com', "edamam-product-images.s3.amazonaws.com"],
 },
 }
 

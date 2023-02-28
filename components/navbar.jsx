@@ -14,7 +14,7 @@ function navbar() {
     />
   </div>
   <div class="flex justify-center py-8  text-gray-500 md:py-0 text-4xl md:text-7xl">
-    <h1 className="pt-16 underline">Foodies Kitchen</h1>
+    <h1 className="pt-16 underline">Foodies Recipe's</h1>
   </div>
   <div className="flex justify-center md:p-0 md:pl-4">
     <Image
