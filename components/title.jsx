@@ -9,7 +9,7 @@ export default function Nav() {
         {Object.entries(requests).map(([key, { title, url }]) => (
           <h2
             key={key}
-            onClick={() => router.push(`/?search=${key}`)}
+            onClick={() => router.push(`/?q=${key}`)}
             className="last:pr-24 cursor-pointer transition duration-100 transform hover:scale-125 hover:text-blue-400 active:text-red-500"
           >
             {title}

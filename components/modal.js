@@ -31,7 +31,7 @@ function Modal({ isOpen, onClose, hit }) {
               {hit.recipe.label}
             </h2>
             <p className="flex justify-center mb-4 tracking-wide text-gray-500">
-              Ingredients:
+              Ingredients
             </p>
             <div className="flex justify-center flex-wrap text-gray-500">
               {hit.recipe.ingredientLines.map((ingredient, index) => (
@@ -40,7 +40,7 @@ function Modal({ isOpen, onClose, hit }) {
                 </p>
               ))}
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center pt-4">
               <button
                 onClick={onClose}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
