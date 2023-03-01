@@ -3,9 +3,9 @@ import Navbar from '../../components/navbar'
 import Menubar from '../../components/menubar'
 import Title from '../../components/title'
 import Results from '../../components/results'
-import requests from "../../utils/request"
-const API_KEY = process.env.API_KEY;
-const API_ID = process.env.API_ID;
+// import requests from "../../utils/request"
+// const API_KEY = process.env.API_KEY;
+// const API_ID = process.env.API_ID;
 
 export default function Home({results}) {
   //  console.log(results)
