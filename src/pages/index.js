@@ -25,35 +25,15 @@ export default function Home({results}) {
 }
 
 export async function getServerSideProps(context) {
-  const search = context.query.q;
-
-  const request = await fetch(
-    `https://api.edamam.com/api/recipes/v2${
+  const search = context.query.search;
+  const results = await fetch(
+    `https://api.edamam.com/${
       requests[search]?.url || requests.fetchBeef.url
-    }`
-    ).then((res) => res.json());
-    console.log(request)
-
+  }`
+  ).then((res) => res.json());
   return {
     props: {
-     results: request.results ?? null,
+      results
     },
   };
-
-  
-  
-  
-  // const results = await fetch(
-  //   'https://api.edamam.com/api/recipes/v2?type=public&q=beef&app_id=518658db&app_key=c1e7bd94b5b372f36d87bd2601eaa63a'
-  //   // `https://api.edamam.com/api/recipes/v2?type=public&q=steak&app_id=${API_ID}&app_key=${API_KEY}`
-
-  // ).then((res) => res.json());
-
-  // return {
-  //   props: {
-  //     results
-  //   },
-  // };
-
-
 }

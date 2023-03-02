@@ -2,7 +2,6 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import Modal from './modal';
 
-
 function Thumbnail({ results }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHit, setSelectedHit] = useState(null);
@@ -17,11 +16,17 @@ function Thumbnail({ results }) {
     setIsModalOpen(false);
   }
 
+  function Overlay() {
+    return (
+      <div className="fixed inset-0 bg-black opacity-0 z-10"></div>
+    );
+  }
+
   return (
     <>
       {results.hits.map((hit) => (
         <div className='w-full pt-12' key={hit.recipe.uri}>
-          <div className='bg-slate-50 w-96 rounded-3xl'>
+          <div className='bg-slate-50 w-[32rem] rounded-3xl'>
             <div className='flex justify-center rounded-3xl pt-6'>
               <Image
                 className='rounded-3xl'
@@ -38,11 +43,20 @@ function Thumbnail({ results }) {
           </div>
         </div>
       ))}
+      {isModalOpen && <Overlay />}
       {selectedHit && (
         <Modal isOpen={isModalOpen} onClose={handleCloseModal} hit={selectedHit} />
       )}
+      {isModalOpen && <div className="fixed inset-0 flex items-center justify-center z-10">
+        <div className="fixed inset-0 bg-black opacity-60 w-full h-full"></div>
+      </div>}
     </>
   );
 }
+
 export default Thumbnail;
+
+
+
+
 
