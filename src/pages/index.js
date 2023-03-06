@@ -28,7 +28,7 @@ export async function getServerSideProps(context) {
   const search = context.query.search;
   const results = await fetch(
     `https://api.edamam.com/${
-      requests[search]?.url || requests.fetchBeef.url
+      requests[search]?.url || requests.fetchStarter.url
   }`
   ).then((res) => res.json());
   return {

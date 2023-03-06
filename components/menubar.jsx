@@ -43,7 +43,7 @@ function Menubar() {
             </li>
           </Link>
           <Link
-            href="/"
+            href="favorites"
             className="block mt-4 sm:inline-block sm:mt-0 hover:text-blue-400"
           >
             <li className="p-5">

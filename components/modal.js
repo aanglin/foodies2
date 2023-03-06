@@ -2,12 +2,19 @@ import React from "react";
  import { Fragment } from "react";
  import { Dialog, Transition } from "@headlessui/react";
  import Image from "next/image";
+import Link from "next/link";
 
  const overlayClasses = "fixed inset-0 bg-black bg-opacity-50";
  const modalClasses = "fixed inset-0 z-10 overflow-y-auto";
  const contentClasses = "relative p-8 mx-auto my-4 w-full max-w-md";
 
 function Modal({ isOpen, onClose, hit }) {
+  function saveToLocalStorage(hit) {
+    const key = `hit_${hit.recipe.url}`;
+    const value = JSON.stringify(hit)
+    localStorage.setItem(key, value);
+  }
+  
   return (
     <Transition show={isOpen} as={Fragment}>
       <Dialog
@@ -40,13 +47,32 @@ function Modal({ isOpen, onClose, hit }) {
                 </p>
               ))}
             </div>
-            <div className="flex justify-center pt-4">
+            <div className="flex justify-center pt-4 ">
               <button
                 onClick={onClose}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
               >
                 Close
               </button>
+              <div className="flex pl-5">
+              <Link
+                href={hit.recipe.url}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
+              >
+                Instructions
+              </Link>
+              </div>
+              <div className="flex justify-center pl-4 ">
+              <button
+                onClick={() => {
+                  saveToLocalStorage(hit);
+                  onClose();
+                }}
+                className="tracking-widest bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
+              >
+                Save
+              </button>
+              </div>
             </div>
           </div>
         </div>
