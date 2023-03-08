@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import Modal from './modal';
+import SavedModal from './savedModal';
 
 function SavedRecipes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,7 +49,7 @@ function SavedRecipes() {
       ))}
       {isModalOpen && <Overlay />}
       {selectedHit && (
-        <Modal isOpen={isModalOpen} onClose={handleCloseModal} hit={selectedHit} />
+        <SavedModal isOpen={isModalOpen} onClose={handleCloseModal} hit={selectedHit} />
       )}
       {isModalOpen && <div className="fixed inset-0 flex items-center justify-center z-10">
         <div className="fixed inset-0 bg-black opacity-60 w-full h-full"></div>

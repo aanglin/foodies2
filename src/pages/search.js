@@ -3,7 +3,8 @@ import React, {useState} from 'react'
 import Navbar from '../../components/navbar';
 import Head from 'next/head';
 import axios from "axios";
-import { ImSearch } from "react-icons/im";
+import { HiSearch } from "react-icons/hi";
+import Results from '../../components/results';
 
 const API_KEY = process.env.API_KEY;
 const API_ID = process.env.API_ID;
@@ -12,6 +13,7 @@ const API_ID = process.env.API_ID;
 function Search() {
     const [query, setQuery] = useState('')
     const [recipe, setRecipe] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const options = {
         method: "GET",
@@ -25,6 +27,7 @@ function Search() {
           .request(options)
           .then(function (response) {
             setRecipe(response.data);
+            console.log(recipe)
             setQuery("");
             setLoading(false);
           })
@@ -42,29 +45,32 @@ function Search() {
       </Head>
     <Menubar />
     <Navbar />
-      <div className="p-4 justify-center">
-        <div className="relative flex items-center justify-center max-w-[500px] w-full m-auto pt-4 z-10 ">
+    <div className="p-4 justify-center">
+        <div className="relative flex items-center justify-center max-w-[500px] w-full m-auto pt-4 text-white z-10 ">
           <form
             onSubmit={getRecipe}
-            className="flex justify-between items-center w-full m-auto p-3 bg-transparent border border-gray-400 text-white  rounded-2xl"
+            className="flex justify-between items-center w-full m-auto p-3 bg-transparent border border-gray-400 text-gray-400  rounded-2xl"
           >
             <div>
               <input
                 onChange={(e) => setQuery(e.target.value)}
-                className="bg-transparent border border-gray-400 text-white focus:outline-none text-2xl"
+                className="bg-transparent border-none text-gray-400 focus:outline-none text-2xl placeholder:text-white/15"
                 type="text"
                 placeholder="Search for a recipe"
                 value={query}
               />
             </div>
             <button onClick={getRecipe}>
-              <ImSearch />
+              <HiSearch size={25} className='text-gray-400 fill-current' />
             </button>
           </form>
         </div>
-      </div>
+        </div>
     </>
   )
 }
 
 export default Search;
+
+
+
