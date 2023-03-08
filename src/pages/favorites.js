@@ -1,9 +1,7 @@
 import Head from 'next/head'
 import Navbar from '../../components/navbar'
 import Menubar from '../../components/menubar'
-import LocalStorage from '../../components/localStorage';
-
-
+import SavedFavorites from '../../components/savedFavorites';
 
 
 export default function Favories() {
@@ -17,7 +15,7 @@ export default function Favories() {
       </Head>
       <Menubar />
       <Navbar />
-      <LocalStorage />
+      <SavedFavorites />
       
     </>
   )

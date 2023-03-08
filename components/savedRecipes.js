@@ -2,12 +2,17 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import Modal from './modal';
 
-function localStorage() {
+function SavedRecipes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHit, setSelectedHit] = useState(null);
-
-  function handleOpenModal(hit) {
-    setSelectedHit(hit);
+  const keys = Object.keys(localStorage);
+  
+  const savedRecipes = keys
+    .filter((key) => key.startsWith("hit_"))
+    .map((key) => JSON.parse(localStorage.getItem(key)));
+    
+  function handleOpenModal(recipe) {
+    setSelectedHit(recipe);
     setIsModalOpen(true);
   }
 
@@ -21,24 +26,23 @@ function localStorage() {
       <div className="fixed inset-0 bg-black opacity-0 z-10"></div>
     );
   }
-
   return (
     <>
-      {results.hits.map((hit) => (
-        <div className='w-full pt-12' key={hit.recipe.uri}>
+      {savedRecipes.map((recipe) => (
+        <div className='w-full pt-12' key={recipe.recipe.uri}>
           <div className='bg-slate-50 w-[32rem] rounded-3xl'>
             <div className='flex justify-center rounded-3xl pt-6'>
               <Image
                 className='rounded-3xl'
-                src={hit.recipe.image}
+                src={recipe.recipe.image}
                 width={300}
                 height={300}
                 alt='/'
               />
             </div>
-            <h1 className='flex justify-center p-2'>{hit.recipe.label}</h1>
+            <h1 className='flex justify-center p-2'>{recipe.recipe.label}</h1>
             <div className='flex justify-center'>
-              <button onClick={() => handleOpenModal(hit)}>Click Here for Recipe</button>
+              <button onClick={() => handleOpenModal(recipe)}>Click Here for Recipe</button>
             </div>
           </div>
         </div>
@@ -54,7 +58,7 @@ function localStorage() {
   );
 }
 
-export default localStorage;
+export default SavedRecipes;
 
 
 

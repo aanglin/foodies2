@@ -12,7 +12,7 @@ function Menubar() {
   };
 
   return (
-    <div className="flex justify-start text-gray-500 text-xl pt-4 pl-2 relative">
+    <div className="flex relative justify-start text-gray-500 text-xl pt-2 pl-2">
       <AiOutlineMenu
         size={25}
         className="relative cursor-pointer"
@@ -35,7 +35,7 @@ function Menubar() {
             </li>
           </Link>
           <Link
-            href="/"
+            href="search"
             className="block mt-4 sm:inline-block sm:mt-0 hover:text-blue-400 mr-4"
           >
             <li className="p-5">
