@@ -1,34 +1,37 @@
 import React, {useState} from 'react'
 import axios from "axios";
 import { HiSearch } from "react-icons/hi";
+import SearchResults from "./searchResults"
 
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+const API_ID = process.env.NEXT_PUBLIC_API_ID;
+console.log(API_KEY, API_ID)
 function searchBar() {
     const [query, setQuery] = useState('')
-    const [recipe, setRecipe] = useState("");
+    const [recipe, setRecipe] = useState('');
     const [loading, setLoading] = useState(false);
+
+
+      const url = `https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${API_ID}&app_key=${API_KEY}`
     
-    const url = `https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${process.env.API_ID}&app_key=${process.env.API_KEY}`
-    
+  
     const getRecipe = (e) => {
       e.preventDefault();
       setLoading(true);
       axios
-        .get(url, {
-          headers: {
-            'Access-Control-Allow-Origin': '*'
-          }
-        })
-        .then((response) => {
+        .get(url)
+        .then(function (response) {
           setRecipe(response.data);
-          console.log(response);
           setQuery("");
           setLoading(false);
+          console.log(recipe)
         })
         .catch(function (error) {
           console.error(error);
         });
     };
   return (
+    <>
     <div className="p-4 justify-center">
     <div className="relative flex items-center justify-center max-w-[500px] w-full m-auto pt-4 text-white z-10 ">
       <form
@@ -50,6 +53,8 @@ function searchBar() {
       </form>
     </div>
     </div>
+    <SearchResults results={recipe} />
+    </>
   )
 }
 

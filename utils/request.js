@@ -1,7 +1,7 @@
-const API_KEY = process.env.API_KEY;
-const API_ID = process.env.API_ID;
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+const API_ID = process.env.NEXT_PUBLIC_API_ID;
 
-console.log(API_KEY, API_ID);
+
 export default {
     fetchStarter: {
         title: 'Starter',
