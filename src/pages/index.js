@@ -7,7 +7,6 @@ import requests from "../../utils/request"
 
 
 export default function Home({results}) {
-    console.log(results)
   return (
     <>
       <Head>
