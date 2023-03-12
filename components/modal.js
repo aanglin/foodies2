@@ -3,16 +3,17 @@ import React from "react";
  import { Dialog, Transition } from "@headlessui/react";
  import Image from "next/image";
 import Link from "next/link";
+import { useLocalStorage } from 'react-use-storage';
+
 
  const overlayClasses = "fixed inset-0 bg-black bg-opacity-50";
  const modalClasses = "fixed inset-0 z-10 overflow-y-auto";
 
 
 function Modal({ isOpen, onClose, hit }) {
+  const [savedRecipes, setSavedRecipes] = useLocalStorage('savedRecipes', []);
   function saveToLocalStorage(hit) {
-    const key = `hit_${hit.recipe.url}`;
-    const value = JSON.stringify(hit)
-    localStorage.setItem(key, value);
+    setSavedRecipes([...savedRecipes, hit]);
   }
   
   return (

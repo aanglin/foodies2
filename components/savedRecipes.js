@@ -1,16 +1,35 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import SavedModal from './savedModal';
+import { useLocalStorage } from 'react-use-storage';
+import Thumbnail from './thumbnail';
+
+
+function retrieveFromLocalStorage(url) {
+  const key = `hit_${url}`;
+  const value = localStorage.getItem(key);
+  if (value) {
+    return JSON.parse(value);
+  }
+  return null;
+}
 
 function SavedRecipes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHit, setSelectedHit] = useState(null);
-  const keys = Object.keys(localStorage);
+  const [savedRecipes, setSavedRecipes] = useLocalStorage('savedRecipes', []);
+
+  const filteredSavedRecipes = savedRecipes
+  .filter((hit) => hit.recipe.url.startsWith("http"))
+  .map((hit) => retrieveFromLocalStorage(hit.recipe.url));
+
+  {filteredSavedRecipes.map((hit) => (
+    <Thumbnail
+      key={hit}
+      hit={hit}
+    />
+  ))}
   
-  const savedRecipes = keys
-    .filter((key) => key.startsWith("hit_"))
-    .map((key) => JSON.parse(localStorage.getItem(key)));
-    
   function handleOpenModal(recipe) {
     setSelectedHit(recipe);
     setIsModalOpen(true);
