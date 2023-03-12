@@ -2,7 +2,7 @@ import Image from "next/image";
 import Pepper from "../public/images/pepper.jpg";
 import Onion from "../public/images/onion.jpg";
 
-function navbar() {
+function Navbar() {
   return (
     <div className="flex flex-col md:flex-row md:justify-evenly">
   <div className="flex justify-center md:pb-0 md:pr-4">
@@ -24,8 +24,7 @@ function navbar() {
     />
   </div>
 </div>
-
   );
 }
 
-export default navbar;
+export default Navbar;

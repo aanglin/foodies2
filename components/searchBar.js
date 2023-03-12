@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState} from "react";
 import { HiSearch } from "react-icons/hi";
-import SearchRecipes from "./searchRecipes"
+import SearchRecipes from "./searchRecipes";
+import axios from "axios";
 
 
 function SearchBar() {
@@ -8,31 +9,30 @@ function SearchBar() {
   const [recipe, setRecipe] = useState('');
   const [loading, setLoading] = useState(false);
   
-  
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-  const API_ID = process.env.NEXT_PUBLIC_API_ID;
+const API_ID = process.env.NEXT_PUBLIC_API_ID;
 
-      const url = `https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${API_ID}&app_key=${API_KEY}`
-   
-      const getRecipe = (e) => {
-        e.preventDefault();
-        setLoading(true);
-        fetch(url)
-          .then(response => {
-            if (response.ok) {
-              return response.json();
-            }
-            throw new Error('Network response was not ok.');
-          })
-          .then(data => {
-            setRecipe(data);
-            setQuery("");
-            setLoading(false);
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      };
+const url = `https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${API_ID}&app_key=${API_KEY}`;
+
+const getRecipe = (e) => {
+  e.preventDefault();
+  setLoading(true);
+  axios.get(url)
+    .then(response => {
+      if (response.status === 200) {
+        return response.data;
+      }
+      throw new Error('Network response was not ok.');
+    })
+    .then(data => {
+      setRecipe(data);
+      setQuery("");
+      setLoading(false);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+};
   return (
     <>
     <div className="p-4 justify-center">
