@@ -3,7 +3,7 @@ import { HiSearch } from "react-icons/hi";
 import SearchRecipes from "./searchRecipes"
 
 
-function searchBar() {
+function SearchBar() {
   const [query, setQuery] = useState('')
   const [recipe, setRecipe] = useState('');
   const [loading, setLoading] = useState(false);
@@ -61,4 +61,4 @@ function searchBar() {
   )
 }
 
-export default searchBar
+export default SearchBar;

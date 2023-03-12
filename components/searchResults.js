@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import Modal from './modal';
 
-function searchResults({ results }) {
+function SearchResults({ results }) {
    console.log(results);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHit, setSelectedHit] = useState(null);
@@ -56,7 +56,7 @@ function searchResults({ results }) {
   );
 }
 
-export default searchResults;
+export default SearchResults;
 
 
 
