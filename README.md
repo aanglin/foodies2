@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Deployed Website
-[Foodies 2.0](https://vercel.com/aanglin/foodies2) <br>
+[Foodies 2.0](https://foodies2.vercel.app/) <br>
 Initial Deployment Date: March 11, 2023
 
 ## Description
