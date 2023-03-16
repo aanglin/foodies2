@@ -3,7 +3,7 @@
 
 ## Deployed Website
 [Foodies 2.0](https://foodies2.vercel.app/) <br>
-Initial Deployment Date: March 11, 2023
+Initial Deployment Date: March 12, 2023
 
 ## Description
 Foodies 2.0 is the official reboot of Foodies Recipe. It builds on the latest version of NextJS and uses edamon as the api for recipes. You can hit the main categories and see recipes or go to the search menu and search for what you want.

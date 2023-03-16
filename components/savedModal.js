@@ -17,7 +17,7 @@ function Modal({ isOpen, onClose, hit }) {
         overlayClassName={overlayClasses}
       >
         <div className="flex justify-center pt-48 pl-32">
-          <div className="bg-slate-50 text-gray-600 w-1/4 p-5 rounded-3xl">
+          <div className="w-fit bg-slate-50 text-gray-600 p-5 rounded-3xl md:w-fit text-2xl">
             {/* Content of the modal */}
             <div className="flex justify-center">
               <Image
@@ -34,12 +34,14 @@ function Modal({ isOpen, onClose, hit }) {
             <p className="flex justify-center mb-4 tracking-wide text-gray-500">
               Ingredients
             </p>
-            <div className="flex justify-center flex-wrap text-gray-500">
-              {hit.recipe.ingredientLines.map((ingredient, index) => (
-                <p key={index} className="text-center">
-                  {ingredient}
-                </p>
-              ))}
+            <div className="flex justify-center flex-wrap text-gray-500 tracking-wider">
+              <ul>
+                {hit.recipe.ingredientLines.map((ingredient, index) => (
+                  <li key={index} className="text-center">
+                    {ingredient}
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className="flex justify-center pt-4 ">
               <button

@@ -48,7 +48,7 @@ function SavedRecipes() {
   return (
     <>
       {savedRecipes.map((recipe) => (
-        <div className='w-full pt-12' key={recipe.recipe.uri}>
+        <div className='pt-12' key={recipe.recipe.uri}>
           <div className='bg-slate-50 w-[32rem] rounded-3xl'>
             <div className='flex justify-center rounded-3xl pt-6'>
               <Image

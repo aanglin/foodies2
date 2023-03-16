@@ -25,24 +25,24 @@ function Thumbnail({ results }) {
   return (
     <>
       {results.hits.map((hit) => (
-        <div className='w-full pt-12' key={hit.recipe.uri}>
-          <div className='bg-slate-50 w-[32rem] rounded-3xl'>
-            <div className='flex justify-center rounded-3xl pt-6'>
-              <Image
-                className='rounded-3xl'
-                src={hit.recipe.image}
-                width={300}
-                height={300}
-                alt='/'
-              />
-            </div>
-            <h1 className='flex justify-center p-2'>{hit.recipe.label}</h1>
-            <div className='flex justify-center'>
-              <button onClick={() => handleOpenModal(hit)}>Click Here for Recipe</button>
-            </div>
-          </div>
+    <div className='w-full pt-12' key={hit.recipe.uri}>
+      <div className='bg-slate-50 mx-auto rounded-3xl w-[26rem]'>
+        <div className='flex justify-center rounded-3xl pt-6'>
+          <Image
+            className='rounded-3xl'
+            src={hit.recipe.image}
+            width={300}
+            height={300}
+            alt='/'
+          />
         </div>
-      ))}
+        <h1 className='flex justify-center p-2'>{hit.recipe.label}</h1>
+        <div className='flex justify-center'>
+          <button onClick={() => handleOpenModal(hit)}>Click Here for Recipe</button>
+        </div>
+      </div>
+    </div>
+))}
       {isModalOpen && <Overlay />}
       {selectedHit && (
         <Modal isOpen={isModalOpen} onClose={handleCloseModal} hit={selectedHit} />
