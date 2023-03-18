@@ -9,6 +9,26 @@ import Link from "next/link";
  const contentClasses = "relative p-8 mx-auto my-4 w-full max-w-md";
 
 function Modal({ isOpen, onClose, hit }) {
+  function deleteFromDatabase(hit) {
+    fetch('/api/favorites', {
+      method: 'Delete',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(hit),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Recipe saved:', data);
+        onClose();
+        window.location.href = "/";
+      })
+      .catch(error => {
+        console.error('Error saving recipe:', error);
+        onClose();
+        window.location.href = "/";
+      });
+  }
   return (
     <Transition show={isOpen} as={Fragment}>
       <Dialog
@@ -57,6 +77,17 @@ function Modal({ isOpen, onClose, hit }) {
               >
                 Instructions
               </Link>
+              </div>
+              <div className="flex justify-center pl-4 ">
+                <button
+                  onClick={() => {
+                    deleteFromDatabase(hit);
+                    onClose();
+                  }}
+                  className="tracking-widest bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </div>

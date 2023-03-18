@@ -1,34 +1,24 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SavedModal from './savedModal';
 import { useLocalStorage } from 'react-use-storage';
 import Thumbnail from './thumbnail';
 
-
-function retrieveFromLocalStorage(url) {
-  const key = `hit_${url}`;
-  const value = localStorage.getItem(key);
-  if (value) {
-    return JSON.parse(value);
-  }
-  return null;
-}
 
 function SavedRecipes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHit, setSelectedHit] = useState(null);
   const [savedRecipes, setSavedRecipes] = useLocalStorage('savedRecipes', []);
 
-  const filteredSavedRecipes = savedRecipes
-  .filter((hit) => hit.recipe.url.startsWith("http"))
-  .map((hit) => retrieveFromLocalStorage(hit.recipe.url));
-
-  {filteredSavedRecipes.map((hit) => (
-    <Thumbnail
-      key={hit}
-      hit={hit}
-    />
-  ))}
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('/api/favorites');
+      const data = await response.json();
+      setSavedRecipes(data);
+      console.log(savedRecipes);
+    }
+    fetchData();
+  }, []);
   
   function handleOpenModal(recipe) {
     setSelectedHit(recipe);
@@ -47,7 +37,7 @@ function SavedRecipes() {
   }
   return (
     <>
-      {savedRecipes.map((recipe) => (
+      {Array.from(savedRecipes).map((recipe) => (
         <div className='pt-12' key={recipe.recipe.uri}>
           <div className='bg-slate-50 w-[32rem] rounded-3xl'>
             <div className='flex justify-center rounded-3xl pt-6'>

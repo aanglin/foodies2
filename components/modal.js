@@ -3,16 +3,31 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useLocalStorage } from "react-use-storage";
+
 
 const overlayClasses = "fixed inset-0 bg-black bg-opacity-50";
 const modalClasses = "fixed inset-0 z-10 overflow-y-auto";
 
 function Modal({ isOpen, onClose, hit }) {
-  const [savedRecipes, setSavedRecipes] = useLocalStorage("savedRecipes", []);
-  function saveToLocalStorage(hit) {
-    setSavedRecipes([...savedRecipes, hit]);
+  function saveToDatabase(hit) {
+    fetch('/api/favorites', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(hit),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Recipe saved:', data);
+        onClose();
+      })
+      .catch(error => {
+        console.error('Error saving recipe:', error);
+        onClose();
+      });
   }
+  
 
   return (
     <Transition show={isOpen} as={Fragment}>
@@ -67,7 +82,7 @@ function Modal({ isOpen, onClose, hit }) {
               <div className="flex justify-center pl-4 ">
                 <button
                   onClick={() => {
-                    saveToLocalStorage(hit);
+                    saveToDatabase(hit);
                     onClose();
                   }}
                   className="tracking-widest bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
