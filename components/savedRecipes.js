@@ -1,23 +1,33 @@
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import SavedModal from './savedModal';
-import { useLocalStorage } from 'react-use-storage';
-import Thumbnail from './thumbnail';
+import axios from 'axios';
+import Cookies from 'js-cookie'
+
+function setUserId(userId) {
+  Cookies.set('userId', userId)
+}
+
+function getUserId() {
+  return Cookies.get('userId')
+}
 
 
 function SavedRecipes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHit, setSelectedHit] = useState(null);
-  const [savedRecipes, setSavedRecipes] = useLocalStorage('savedRecipes', []);
+  const [savedRecipes, setSavedRecipes] = useState("");
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('/api/favorites');
-      const data = await response.json();
-      setSavedRecipes(data);
-      console.log(savedRecipes);
-    }
-    fetchData();
+    const userId = getUserId();
+    axios.get('/api/favorites'+ {userId})
+      .then(response => {
+        setSavedRecipes(response.data);
+        console.log(savedRecipes);
+      })
+      .catch(error => {
+        console.error('Error retrieving saved recipes:', error);
+      });
   }, []);
   
   function handleOpenModal(recipe) {

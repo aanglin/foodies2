@@ -3,29 +3,29 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
+import Cookies from 'js-cookie'
 
 
 const overlayClasses = "fixed inset-0 bg-black bg-opacity-50";
 const modalClasses = "fixed inset-0 z-10 overflow-y-auto";
 
+function getUserId() {
+  return Cookies.get('userId')
+}
+
 function Modal({ isOpen, onClose, hit }) {
   function saveToDatabase(hit) {
-    fetch('/api/favorites', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(hit),
+    const userId = getUserId();
+    axios.post('/api/favorites', { hit, userId })
+    .then(response => {
+      console.log('Recipe saved:', response.data);
+      onClose();
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Recipe saved:', data);
-        onClose();
-      })
-      .catch(error => {
-        console.error('Error saving recipe:', error);
-        onClose();
-      });
+    .catch(error => {
+      console.error('Error saving recipe:', error);
+      onClose();
+    });
   }
   
 

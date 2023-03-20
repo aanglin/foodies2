@@ -6,13 +6,13 @@ export default async function handler(req, res) {
 
   switch (req.method) {
     case 'POST':
-      const newRecipe = req.body // assuming the request body contains the recipe data
-      const result = await collection.insertOne(newRecipe)
+      const {hit, userId} = req.body // assuming the request body contains the recipe data
+      const result = await collection.insertOne({hit, userId});
       res.json(result)
       break
     
       case 'GET':
-        const recipes = await collection.find({}).toArray()
+        const recipes = await collection.findAll({userId}).toArray()
         res.json(recipes)
         break
       
