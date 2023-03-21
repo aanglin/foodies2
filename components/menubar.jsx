@@ -22,7 +22,7 @@ function Menubar() {
       <div
         className={`${
           isOpen ? "block" : "hidden"
-        } absolute top-0 left-0 w-1/2 h-screen z-50 bg-slate-100 sm:w-1/6`}
+        } absolute top-0 left-0 w-1/2 h-screen z-50 bg-slate-100 sm:w-1/6 md:w-[38%] lg:w-1/6`}
       >
         <div className="text-2xl pl-2">
           <ul className="flex flex-col p-3">
