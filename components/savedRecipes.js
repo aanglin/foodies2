@@ -17,23 +17,33 @@ function SavedRecipes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHit, setSelectedHit] = useState(null);
   const [savedRecipes, setSavedRecipes] = useState([]);
-
-  useEffect(() => {
-     const userId = getUserId();
-    axios.get('/api/saved', {params: { userId }})
-      .then(response => {
-        setSavedRecipes(response.data);
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.error('Error retrieving saved recipes:', error);
-      });
-  }, []);
   
+  useEffect(() => {
+    const userId = getUserId();
+    axios.get('/api/saved', {params: { userId }})
+    .then(response => {
+      setSavedRecipes(response.data);
+      console.log(response.data);
+      console.log(savedRecipes);
+      
+    })
+    .catch(error => {
+      console.error('Error retrieving saved recipes:', error);
+    });
+    
+  }, []);
+
   function handleOpenModal(recipe) {
-    setSelectedHit(recipe);
+    const recipeData = savedRecipes.find(savedRecipe => savedRecipe._id === recipe._id);
+    setSelectedHit(recipeData);
     setIsModalOpen(true);
   }
+  
+  
+  // function handleOpenModal(recipe) {
+  //   setSelectedHit(recipe);
+  //   setIsModalOpen(true);
+  // }
 
   function handleCloseModal() {
     setSelectedHit(null);

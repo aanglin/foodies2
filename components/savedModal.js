@@ -42,21 +42,21 @@ function Modal({ isOpen, onClose, hit }) {
             <div className="flex justify-center">
               <Image
                 className="rounded-3xl p-4"
-                src={hit.recipe.recipe.image}
+                src={hit.hit.recipe.image}
                 width={300}
                 height={300}
                 alt="/"
               />
             </div>
             <h2 className="flex justify-center text-xl font-bold mb-4">
-              {hit.recipe.label}
+              {hit.hit.recipe.label}
             </h2>
             <p className="flex justify-center mb-4 tracking-wide text-gray-500">
               Ingredients
             </p>
             <div className="flex justify-center flex-wrap text-gray-500 tracking-wider">
               <ul>
-                {hit.recipe.ingredientLines.map((ingredient, index) => (
+                {hit.hit.recipe.ingredientLines.map((ingredient, index) => (
                   <li key={index} className="text-center">
                     {ingredient}
                   </li>
@@ -72,7 +72,7 @@ function Modal({ isOpen, onClose, hit }) {
               </button>
               <div className="flex pl-5">
               <Link
-                href={hit.recipe.url}
+                href={hit.hit.recipe.url}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl"
               >
                 Instructions
