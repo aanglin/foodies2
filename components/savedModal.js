@@ -42,7 +42,7 @@ function Modal({ isOpen, onClose, hit }) {
             <div className="flex justify-center">
               <Image
                 className="rounded-3xl p-4"
-                src={hit.recipe.image}
+                src={hit.recipe.recipe.image}
                 width={300}
                 height={300}
                 alt="/"

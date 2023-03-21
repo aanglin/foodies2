@@ -16,14 +16,14 @@ function getUserId() {
 function SavedRecipes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHit, setSelectedHit] = useState(null);
-  const [savedRecipes, setSavedRecipes] = useState("");
+  const [savedRecipes, setSavedRecipes] = useState([]);
 
   useEffect(() => {
-    const userId = getUserId();
-    axios.get('/api/favorites'+ {userId})
+     const userId = getUserId();
+    axios.get('/api/saved', {params: { userId }})
       .then(response => {
         setSavedRecipes(response.data);
-        console.log(savedRecipes);
+        console.log(response.data);
       })
       .catch(error => {
         console.error('Error retrieving saved recipes:', error);
@@ -48,18 +48,18 @@ function SavedRecipes() {
   return (
     <>
       {Array.from(savedRecipes).map((recipe) => (
-        <div className='pt-12' key={recipe.recipe.uri}>
+        <div className='pt-12' key={recipe._id}>
           <div className='bg-slate-50 w-[32rem] rounded-3xl'>
             <div className='flex justify-center rounded-3xl pt-6'>
               <Image
                 className='rounded-3xl'
-                src={recipe.recipe.image}
+                src={recipe.hit.recipe.image}
                 width={300}
                 height={300}
                 alt='/'
               />
             </div>
-            <h1 className='flex justify-center p-2'>{recipe.recipe.label}</h1>
+            <h1 className='flex justify-center p-2'>{recipe.hit.recipe.label}</h1>
             <div className='flex justify-center'>
               <button onClick={() => handleOpenModal(recipe)}>Click Here for Recipe</button>
             </div>
